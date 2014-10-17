@@ -31,5 +31,6 @@
         android:id="@+id/call_buttonbutton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:onClick="onCallButtonClick"
         android:layout_marginBottom="57dp" />
 </RelativeLayout>

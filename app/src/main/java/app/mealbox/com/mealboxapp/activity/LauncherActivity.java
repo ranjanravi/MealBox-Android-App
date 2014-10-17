@@ -1,6 +1,8 @@
 package app.mealbox.com.mealboxapp.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,46 +29,78 @@ public class LauncherActivity extends Activity {
 
     private List<LunchItemModel> lunchItemModelList;
 
+    private AlertDialog errorDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
-        ListView itemList = (ListView)findViewById(R.id.item_list);
+        ListView itemList = (ListView) findViewById(R.id.item_list);
         lunchItemModelList = new ArrayList<LunchItemModel>();
         String data = loadJSONFromAsset();
+        if (data == null) {
+            //Loading assets failed.
+            showClosingErrorDialog();
+            return;
+        }
+
         JSONArray jsonArray = null;
         try {
             jsonArray = new JSONArray(data);
 
-        for (int i = 0; i <jsonArray.length() ; i++){
-            JSONObject jsonObject = jsonArray.getJSONObject(i);
-            lunchItemModelList.add(i,new LunchItemModel(jsonObject.getString("itemTitle"),jsonObject.getString("itemShortDesc"),
-                    jsonObject.getString("itemDescription"), jsonObject.getBoolean("veg")));
-        }
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                lunchItemModelList.add(i, new LunchItemModel(jsonObject.getString("itemTitle"), jsonObject.getString("itemShortDesc"),
+                        jsonObject.getString("itemDescription"), jsonObject.getBoolean("veg")));
+            }
         } catch (JSONException e) {
-            e.printStackTrace();
+            showClosingErrorDialog();
+            //No need to go any further.
+            return;
         }
+
 
         itemList.setAdapter(new LunchItemListAdapter(this, R.layout.list_item, lunchItemModelList));
         itemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent  = new Intent();
-                intent.setAction("com.mealboxapp.detail");
+                Intent intent = new Intent();
+                intent.setAction(getString(R.string.detail_page_intent));
                 intent.putExtra("item_desc", lunchItemModelList.get(i).getDetailedDescription());
-                intent.putExtra("veg",lunchItemModelList.get(i).isVeg());
+                intent.putExtra("veg", lunchItemModelList.get(i).isVeg());
                 intent.setClass(LauncherActivity.this.getApplicationContext(), DetailActivity.class);
                 LauncherActivity.this.startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
+    }
+
+    public void prepareAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                LauncherActivity.this.finish();
+            }
+        });
+
+        errorDialog = builder.create();
+    }
+
+    public void showClosingErrorDialog() {
+        if (errorDialog == null) {
+            prepareAlertDialog();
+        }
+        errorDialog.setTitle(getString(R.string.sorry));
+        errorDialog.setMessage(getString(R.string.error_close));
+        errorDialog.show();
     }
 
     public String loadJSONFromAsset() {
         String json = null;
         try {
 
-            InputStream is = getAssets().open("data.json");
+            InputStream is = getAssets().open(getString(R.string.input_data_json));
 
             int size = is.available();
 
@@ -76,11 +110,10 @@ public class LauncherActivity extends Activity {
 
             is.close();
 
-            json = new String(buffer, "UTF-8");
+            json = new String(buffer, getString(R.string.formatting));
 
 
         } catch (IOException ex) {
-            ex.printStackTrace();
             return null;
         }
         return json;

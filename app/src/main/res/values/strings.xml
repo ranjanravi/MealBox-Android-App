@@ -4,5 +4,11 @@
     <string name="app_name">MealBoxApp</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="detail_page_intent">com.mealboxapp.detail</string>
+    <string name="sorry">Oops Sorry!!</string>
+    <string name="error_close">Something went wrong, please try again!</string>
+    <string name="input_data_json">data.json</string>
+    <string name="formatting">UTF-8</string>
+    <string name="phone_number">tel:9686144543</string>
 
 </resources>
