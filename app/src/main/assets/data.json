@@ -1,0 +1,5 @@
+[
+    {"itemTitle":"Veg Meal", "veg":true, "itemShortDesc":"LightWeight Meal", "itemDescription":"1 Roti, 1 Kulcha, 2 subjis, dal, papad, pickle, raita"},
+    {"itemTitle":"Non Veg Meal", "veg":false, "itemShortDesc":"Non Veg Meal", "itemDescription":"1 Roti, 1 Kulcha, 2 subjis, dal, papad, pickle, raita"},
+    {"itemTitle":"Special Veg Meal", "veg":true, "itemShortDesc":"Sumptous Meal", "itemDescription":"1 Roti, 1 Kulcha, 2 subjis, dal, papad, pickle, raita"}
+]
