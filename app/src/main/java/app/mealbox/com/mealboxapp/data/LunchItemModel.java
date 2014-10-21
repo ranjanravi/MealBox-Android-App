@@ -6,30 +6,51 @@ package app.mealbox.com.mealboxapp.data;
 public class LunchItemModel {
 
     private String title;
-    private String miniDescription;
-    private String detailedDescription;
+    private String shortDescription;
+    private String itemContent;
     private boolean veg;
+    private float itemPrice;
 
-    public LunchItemModel(String title, String miniDescription, String detailedDescription, boolean veg) {
+    private LunchItemExtra lunchItemExtra;
+
+    public LunchItemModel(String title, String shortDescription, String itemContent, boolean veg, LunchItemExtra lunchItemExtra) {
         this.title = title;
-        this.miniDescription = miniDescription;
-        this.detailedDescription = detailedDescription;
+        this.shortDescription = shortDescription;
+        this.itemContent = itemContent;
         this.veg = veg;
+        this.lunchItemExtra = lunchItemExtra;
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return this.title;
     }
 
-    public String getMiniDescription(){
-        return this.miniDescription;
+    public String getShortDescription() {
+        return this.shortDescription;
     }
 
-    public String getDetailedDescription(){
-        return this.detailedDescription;
+    public String getItemContent() {
+        return this.itemContent;
     }
 
-    public boolean isVeg(){
+    public boolean isVeg() {
         return this.veg;
     }
+
+    public float getItemPrice() {
+        return itemPrice;
+    }
+
+    public void setItemPrice(float itemPrice) {
+        this.itemPrice = itemPrice;
+    }
+
+    public LunchItemExtra getLunchItemExtra() {
+        return lunchItemExtra;
+    }
+
+    public void setLunchItemExtra(LunchItemExtra lunchItemExtra) {
+        this.lunchItemExtra = lunchItemExtra;
+    }
+
 }

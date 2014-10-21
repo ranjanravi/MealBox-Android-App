@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,14 +16,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import app.mealbox.com.mealboxapp.R;
 import app.mealbox.com.mealboxapp.data.LunchItemListAdapter;
 import app.mealbox.com.mealboxapp.data.LunchItemModel;
+import app.mealbox.com.mealboxapp.utils.DataParser;
 
 
 public class LauncherActivity extends Activity {
@@ -31,20 +31,34 @@ public class LauncherActivity extends Activity {
 
     private AlertDialog errorDialog;
 
+
+
+    @Override
+    public AssetManager getAssets() {
+        return super.getAssets();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
         ListView itemList = (ListView) findViewById(R.id.item_list);
         lunchItemModelList = new ArrayList<LunchItemModel>();
-        String data = loadJSONFromAsset();
+        String data;
+        DataParser dataParser = new DataParser();
+        try {
+            dataParser.getItemList(this);
+        } catch (JSONException e) {
+            showClosingErrorDialog();
+            return;
+        }
         if (data == null) {
             //Loading assets failed.
             showClosingErrorDialog();
             return;
         }
 
-        JSONArray jsonArray = null;
+
         try {
             jsonArray = new JSONArray(data);
 
@@ -66,7 +80,7 @@ public class LauncherActivity extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent();
                 intent.setAction(getString(R.string.detail_page_intent));
-                intent.putExtra("item_desc", lunchItemModelList.get(i).getDetailedDescription());
+                intent.putExtra("item_desc", lunchItemModelList.get(i).getItemContent());
                 intent.putExtra("veg", lunchItemModelList.get(i).isVeg());
                 intent.setClass(LauncherActivity.this.getApplicationContext(), DetailActivity.class);
                 LauncherActivity.this.startActivity(intent);
@@ -96,29 +110,7 @@ public class LauncherActivity extends Activity {
         errorDialog.show();
     }
 
-    public String loadJSONFromAsset() {
-        String json = null;
-        try {
 
-            InputStream is = getAssets().open(getString(R.string.input_data_json));
-
-            int size = is.available();
-
-            byte[] buffer = new byte[size];
-
-            is.read(buffer);
-
-            is.close();
-
-            json = new String(buffer, getString(R.string.formatting));
-
-
-        } catch (IOException ex) {
-            return null;
-        }
-        return json;
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

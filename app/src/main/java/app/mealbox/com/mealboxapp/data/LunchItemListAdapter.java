@@ -1,7 +1,6 @@
 package app.mealbox.com.mealboxapp.data;
 
 import android.app.Activity;
-import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +36,7 @@ public class LunchItemListAdapter extends ArrayAdapter<LunchItemModel>{
         }
         LunchItemModel lunchItemModel = lunchItemModelList.get(position);
         ((TextView)convertView.findViewById(R.id.item_description)).setText(lunchItemModel.getTitle());
-        ((TextView)convertView.findViewById(R.id.item_sub_description)).setText(lunchItemModel.getMiniDescription());
+        ((TextView)convertView.findViewById(R.id.item_sub_description)).setText(lunchItemModel.getShortDescription());
 
         return convertView;
     }
