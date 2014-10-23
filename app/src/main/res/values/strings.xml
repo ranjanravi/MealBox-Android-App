@@ -10,5 +10,7 @@
     <string name="input_data_json">data.json</string>
     <string name="formatting">UTF-8</string>
     <string name="phone_number">tel:9686144543</string>
+    <string name="default_text">Veg Thali</string>
+    <string name="default_text_long">Veg Thali serves the purpose to fill </string>
 
 </resources>

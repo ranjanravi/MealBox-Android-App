@@ -1,5 +1,12 @@
 package app.mealbox.com.mealboxapp.data;
 
+import android.view.MenuItem;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import app.mealbox.com.mealboxapp.utils.Constants;
+
 /**
  * Created by raviran on 10/14/2014.
  */
@@ -11,14 +18,15 @@ public class LunchItemModel {
     private boolean veg;
     private float itemPrice;
 
-    private LunchItemExtra lunchItemExtra;
+//    private LunchItemExtra lunchItemExtra;
 
-    public LunchItemModel(String title, String shortDescription, String itemContent, boolean veg, LunchItemExtra lunchItemExtra) {
-        this.title = title;
-        this.shortDescription = shortDescription;
-        this.itemContent = itemContent;
-        this.veg = veg;
-        this.lunchItemExtra = lunchItemExtra;
+    public LunchItemModel(JSONObject jsonObject) throws JSONException  {
+
+        this.title = jsonObject.getString(Constants.ITEM_TITLE);
+        this.shortDescription = jsonObject.getString(Constants.ITEM_SHORT_DESC);
+        this.itemContent = jsonObject.getString(Constants.ITEM_CONTENT);
+        this.veg = jsonObject.getBoolean(Constants.VEG);
+//        this.lunchItemExtra = new LunchItemExtra(jsonObject.getJSONObject("extras"));
     }
 
     public String getTitle() {
@@ -45,12 +53,12 @@ public class LunchItemModel {
         this.itemPrice = itemPrice;
     }
 
-    public LunchItemExtra getLunchItemExtra() {
-        return lunchItemExtra;
-    }
+//    public LunchItemExtra getLunchItemExtra() {
+//        return lunchItemExtra;
+//    }
 
-    public void setLunchItemExtra(LunchItemExtra lunchItemExtra) {
-        this.lunchItemExtra = lunchItemExtra;
-    }
+//    public void setLunchItemExtra(LunchItemExtra lunchItemExtra) {
+//        this.lunchItemExtra = lunchItemExtra;
+//    }
 
 }

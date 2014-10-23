@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,7 @@ import java.util.List;
 import app.mealbox.com.mealboxapp.R;
 import app.mealbox.com.mealboxapp.data.LunchItemListAdapter;
 import app.mealbox.com.mealboxapp.data.LunchItemModel;
+import app.mealbox.com.mealboxapp.utils.Constants;
 import app.mealbox.com.mealboxapp.utils.DataParser;
 
 
@@ -42,12 +44,16 @@ public class LauncherActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
+
         ListView itemList = (ListView) findViewById(R.id.item_list);
         lunchItemModelList = new ArrayList<LunchItemModel>();
-        String data;
-        DataParser dataParser = new DataParser();
+
+        // Getting the JSON data
+        String data = DataParser.loadJSONFromAsset(this.getApplicationContext());
+        JSONArray menus = null;
         try {
-            dataParser.getItemList(this);
+            JSONObject jsonObject = new JSONObject(data);
+            menus = jsonObject.getJSONArray(Constants.MEALS);
         } catch (JSONException e) {
             showClosingErrorDialog();
             return;
@@ -60,12 +66,11 @@ public class LauncherActivity extends Activity {
 
 
         try {
-            jsonArray = new JSONArray(data);
 
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                lunchItemModelList.add(i, new LunchItemModel(jsonObject.getString("itemTitle"), jsonObject.getString("itemShortDesc"),
-                        jsonObject.getString("itemDescription"), jsonObject.getBoolean("veg")));
+            for (int i = 0; i < menus.length(); i++) {
+                JSONObject jsonObject = menus.getJSONObject(i);
+
+                lunchItemModelList.add(i, new LunchItemModel(jsonObject));
             }
         } catch (JSONException e) {
             showClosingErrorDialog();

@@ -1,19 +1,18 @@
 package app.mealbox.com.mealboxapp.data;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import app.mealbox.com.mealboxapp.utils.Constants;
+
 /**
  * Created by prabhat on 19/10/14.
  */
 public class LunchItemExtra {
 
+    private double quantity;
+    private double price;
     private String itemName;
-    private float quantity;
-    private float price;
-
-    public LunchItemExtra(String itemName, Float quantity, Float price){
-        this.itemName = itemName;
-        this.quantity = quantity;
-        this.price = price;
-    }
 
     public String getItemName() {
         return itemName;
@@ -23,7 +22,13 @@ public class LunchItemExtra {
         this.itemName = itemName;
     }
 
-    public float getQuantity() {
+    public LunchItemExtra(JSONObject jsonObject) throws JSONException{
+        this.itemName = jsonObject.getString(Constants.ITEM_NAME);
+        this.quantity = jsonObject.getDouble(Constants.QUANTITY);
+        this.price = jsonObject.getDouble(Constants.PRICE);
+    }
+
+    public double getQuantity() {
         return quantity;
     }
 
@@ -31,7 +36,7 @@ public class LunchItemExtra {
         this.quantity = quantity;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 

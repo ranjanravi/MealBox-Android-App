@@ -1,38 +1,44 @@
 {
-  "meals":[
+  "meals": [
     {
       "itemTitle": "Veg Meal",
       "veg": true,
       "itemShortDesc": "Medium Quantity Vegetarian Meal",
       "itemContent": "1 Veggie, Dal, Rice, 3 Rotis,Pickles , Papad, Salad ",
       "price": 70,
-      "extras": {
-        "roti" : {
-          "quanity" : 1,
+      "extras": [
+        {
+          "itemName": "roti",
+          "quanity": 1,
           "price": 5
         },
-        "Branded Curd" : {
-          "quantity" : "200gm",
+        {
+          "itemName": "Branded Curd",
+          "quantity": "200gm",
           "price": 25
         },
-        "Vegetable" : {
-          "quantity" : "200gm",
+        {
+          "itemName": "Vegetable",
+          "quantity": "200gm",
           "price": 25
         },
-        "Dal" : {
-          "quantity" : "200gm",
+        {
+          "itemName": "Dal",
+          "quantity": "200gm",
           "price": 25
         },
-        "Rice" : {
-          "quantity" : "200gm",
+        {
+          "itemName": "Rice",
+          "quantity": "200gm",
           "price": 25
         },
-        "Sweets" : {
+        {
+          "itemName": "Sweets",
           "quantity": "2 pieces",
           "options": "Gulab Jamun / Rasgulla / Shrikhand /custard",
           "price": 25
         }
-      }
+      ]
     },
     {
       "itemTitle": "Special Veg Meal",
@@ -40,33 +46,39 @@
       "itemShortDesc": "Special Vegetarian Meal",
       "itemContent": "1 Green Veggie ,1 Pulse Veggie, Dal, Rice, 5 Rotis,Pickles , Papad, Salad ,Dahi",
       "price": 85,
-      "extras": {
-        "roti" : {
-          "quanity" : 1,
+      "extras": [
+        {
+          "itemName": "roti",
+          "quanity": 1,
           "price": 5
         },
-        "Branded Curd" : {
-          "quantity" : "200gm",
+        {
+          "itemName": "Branded Curd",
+          "quantity": "200gm",
           "price": 25
         },
-        "Vegetable" : {
-          "quantity" : "200gm",
+        {
+          "itemName": "Vegetable",
+          "quantity": "200gm",
           "price": 25
         },
-        "Dal" : {
-          "quantity" : "200gm",
+        {
+          "itemName": "Dal",
+          "quantity": "200gm",
           "price": 25
         },
-        "Rice" : {
-          "quantity" : "200gm",
+        {
+          "itemName": "Rice",
+          "quantity": "200gm",
           "price": 25
         },
-        "Sweets" : {
+        {
+          "itemName": "Sweets",
           "quantity": "2 pieces",
           "options": "Gulab Jamun / Rasgulla / Shrikhand /custard",
           "price": 25
         }
-      }
+      ]
     },
     {
       "itemTitle": "Egg Meal",
@@ -74,33 +86,39 @@
       "itemShortDesc": "Egg Meal",
       "itemContent": "Egg curry (2pcs), Rice , 4 Roti,Pickles , Papad ,salad",
       "price": 85,
-      "extras": {
-        "roti" : {
-          "quanity" : 1,
+      "extras": [
+        {
+          "itemName": "roti",
+          "quanity": 1,
           "price": 5
         },
-        "Branded Curd" : {
-          "quantity" : "200gm",
+        {
+          "itemName": "Branded Curd",
+          "quantity": "200gm",
           "price": 25
         },
-        "Vegetable" : {
-          "quantity" : "200gm",
+        {
+          "itemName": "Vegetable",
+          "quantity": "200gm",
           "price": 25
         },
-        "Dal" : {
-          "quantity" : "200gm",
+        {
+          "itemName": "Dal",
+          "quantity": "200gm",
           "price": 25
         },
-        "Rice" : {
-          "quantity" : "200gm",
+        {
+          "itemName": "Rice",
+          "quantity": "200gm",
           "price": 25
         },
-        "Sweets" : {
+        {
+          "itemName": "Sweets",
           "quantity": "2 pieces",
           "options": "Gulab Jamun / Rasgulla / Shrikhand /custard",
           "price": 25
         }
-      }
+      ]
     },
     {
       "itemTitle": "Chicken Meal",
@@ -108,40 +126,39 @@
       "itemShortDesc": "Egg Meal",
       "itemContent": "Chicken Curry (4pcs), Rice,4 Roti,Pickles , Papad ,salad",
       "price": 100,
-      "extras": {
-        "roti" : {
-          "quanity" : 1,
+      "extras": [
+        {
+          "itemName": "roti",
+          "quanity": 1,
           "price": 5
         },
-        "Branded Curd" : {
-          "quantity" : "200gm",
+        {
+          "itemName": "Branded Curd",
+          "quantity": "200gm",
           "price": 25
         },
-        "Vegetable" : {
-          "quantity" : "200gm",
+        {
+          "itemName": "Vegetable",
+          "quantity": "200gm",
           "price": 25
         },
-        "Dal" : {
-          "quantity" : "200gm",
+        {
+          "itemName": "Dal",
+          "quantity": "200gm",
           "price": 25
         },
-        "Rice" : {
-          "quantity" : "200gm",
+        {
+          "itemName": "Rice",
+          "quantity": "200gm",
           "price": 25
         },
-        "Sweets" : {
+        {
+          "itemName": "Sweets",
           "quantity": "2 pieces",
           "options": "Gulab Jamun / Rasgulla / Shrikhand /custard",
           "price": 25
         }
-      }
-    },
-    {
-      "itemTitle": "Diet Meal",
-      "veg": true,
-      "itemShortDesc": "Diet Meal",
-      "itemContent": "Boiled Sabzi, Two Slice Brown Bread, Yogurt,Fruit Salad, Tomato Soup",
-      "price": 70
+      ]
     }
   ]
 }

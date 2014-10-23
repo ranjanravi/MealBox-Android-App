@@ -1,11 +1,14 @@
 package app.mealbox.com.mealboxapp.data;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.content.Context;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -28,6 +31,7 @@ public class LunchItemListAdapter extends ArrayAdapter<LunchItemModel>{
         this.lunchItemModelList = lunchItemModelList;
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null){
@@ -36,6 +40,9 @@ public class LunchItemListAdapter extends ArrayAdapter<LunchItemModel>{
         }
         LunchItemModel lunchItemModel = lunchItemModelList.get(position);
         ((TextView)convertView.findViewById(R.id.item_description)).setText(lunchItemModel.getTitle());
+        if(!lunchItemModel.isVeg()) {
+            ((LinearLayout)convertView.findViewById(R.id.list_item)).setBackground(mContext.getResources().getDrawable(R.drawable.red_gradient));
+        }
         ((TextView)convertView.findViewById(R.id.item_sub_description)).setText(lunchItemModel.getShortDescription());
 
         return convertView;

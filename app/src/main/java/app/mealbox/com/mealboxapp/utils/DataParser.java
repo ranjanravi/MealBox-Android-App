@@ -15,16 +15,7 @@ import app.mealbox.com.mealboxapp.R;
  * Created by prabhat on 19/10/14.
  */
 public class DataParser {
-    public JSONArray getItemList(Context context) throws JSONException {
-        String data = loadJSONFromAsset(context);
-        JSONArray meals = null;
-        JSONObject jsonObject = new JSONObject(data);
-        meals = jsonObject.getJSONArray("meals");
-
-        return meals;
-    }
-
-    public String loadJSONFromAsset(Context context) {
+    public static String loadJSONFromAsset(Context context) {
         String json = null;
         try {
 
@@ -38,7 +29,7 @@ public class DataParser {
 
             is.close();
 
-            json = new String(buffer, getString(R.string.formatting));
+            json = new String(buffer, context.getString(R.string.formatting));
 
 
         } catch (IOException ex) {
