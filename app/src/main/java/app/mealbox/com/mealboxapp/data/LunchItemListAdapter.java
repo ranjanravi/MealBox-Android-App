@@ -11,7 +11,9 @@ import android.content.Context;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import app.mealbox.com.mealboxapp.R;
 
@@ -23,6 +25,15 @@ public class LunchItemListAdapter extends ArrayAdapter<LunchItemModel>{
     private final Context mContext;
     private final List<LunchItemModel> lunchItemModelList;
     private final int layoutResId;
+
+    private static HashMap<String, Integer> backgrounds = new HashMap<String, Integer>() ;
+    {
+        backgrounds.put("Veg Meal", R.drawable.veg_thali);
+        backgrounds.put("Special Veg Meal", R.drawable.veg_thali);
+        backgrounds.put("Egg Meal", R.drawable.chicken_biryani);
+        backgrounds.put("Chicken Meal", R.drawable.non_veg_thali);
+    }
+
 
     public LunchItemListAdapter(Context context, int layoutResId, List<LunchItemModel> lunchItemModelList) {
         super(context, layoutResId, lunchItemModelList);
@@ -39,11 +50,13 @@ public class LunchItemListAdapter extends ArrayAdapter<LunchItemModel>{
             convertView = layoutInflater.inflate(layoutResId,parent,false);
         }
         LunchItemModel lunchItemModel = lunchItemModelList.get(position);
-        ((TextView)convertView.findViewById(R.id.item_description)).setText(lunchItemModel.getTitle());
-        if(!lunchItemModel.isVeg()) {
-            ((LinearLayout)convertView.findViewById(R.id.list_item)).setBackground(mContext.getResources().getDrawable(R.drawable.red_gradient));
-        }
+
+        ((LinearLayout)convertView.findViewById(R.id.list_item)).setBackground(
+                mContext.getResources().getDrawable(backgrounds.get(lunchItemModel.getTitle())));
+
         ((TextView)convertView.findViewById(R.id.item_sub_description)).setText(lunchItemModel.getShortDescription());
+        int price = (int) lunchItemModel.getItemPrice();
+        ((TextView)convertView.findViewById(R.id.price)).setText(new Integer(price).toString());
 
         return convertView;
     }

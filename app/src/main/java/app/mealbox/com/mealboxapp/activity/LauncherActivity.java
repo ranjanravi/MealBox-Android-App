@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -45,7 +46,8 @@ public class LauncherActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
 
-        ListView itemList = (ListView) findViewById(R.id.item_list);
+        GridView itemList = (GridView) findViewById(R.id.item_list);
+//        itemList.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, 200));
         lunchItemModelList = new ArrayList<LunchItemModel>();
 
         // Getting the JSON data
@@ -80,6 +82,7 @@ public class LauncherActivity extends Activity {
 
 
         itemList.setAdapter(new LunchItemListAdapter(this, R.layout.list_item, lunchItemModelList));
+
         itemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
