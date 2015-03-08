@@ -4,15 +4,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import app.mealbox.com.mealboxapp.R;
 
 /**
- * Created by raviran on 10/14/2014.
+ * Created by prabhatr on 10/14/2014.
  */
-public class DetailActivity extends Activity{
+public class DetailActivity extends ActionBarActivity {
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,9 @@ public class DetailActivity extends Activity{
             setContentView(R.layout.detail_page);
             TextView textView = (TextView)findViewById(R.id.lunch_detail);
             textView.setText(getIntent().getStringExtra("item_desc"));
+
+            Log.e("PRABHATR_DEVLOGS", new String("DetailActivity found!!!!!"));
+
         }
 
         public void onCallButtonClick(View v){
