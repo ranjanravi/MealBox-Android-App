@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/call_button_height"
     android:id="@+id/header_fragment"
-    tools:context="app.mealbox.com.mealboxapp.Nav">
+    tools:context="fragments.Nav">
 
     <LinearLayout
         android:layout_width="match_parent"

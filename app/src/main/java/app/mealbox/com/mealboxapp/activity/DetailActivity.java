@@ -15,7 +15,7 @@ import app.mealbox.com.mealboxapp.R;
 /**
  * Created by prabhatr on 10/14/2014.
  */
-public class DetailActivity extends ActionBarActivity {
+public class DetailActivity extends Activity {
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
